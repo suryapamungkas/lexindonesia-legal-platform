@@ -1,0 +1,286 @@
+/**
+ * Components Styling (Sesuai modern-web-guidance)
+ * - Badges
+ * - Buttons
+ * - Dialogs & Modals (<dialog closedby="any">, @starting-style, allow-discrete)
+ * - Search Highlights
+ */
+
+/* --- BADGES --- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  line-height: 1;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+.badge-success {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.badge-warning {
+  background-color: var(--color-warning-bg);
+  color: var(--color-warning);
+}
+
+.badge-danger {
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+.badge-info {
+  background-color: var(--color-info-bg);
+  color: var(--color-info);
+}
+
+.badge-type {
+  background-color: var(--bg-muted);
+  color: var(--text-secondary);
+}
+
+.badge-sector {
+  background-color: rgba(0, 33, 71, 0.08);
+  color: var(--color-primary-navy);
+}
+
+[data-theme="dark"] .badge-sector {
+  background-color: rgba(255, 184, 0, 0.15);
+  color: var(--color-accent-gold);
+}
+
+.badge-pro {
+  background: linear-gradient(135deg, #FFB800 0%, #FF9900 100%);
+  color: #000000;
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgba(255, 184, 0, 0.3);
+}
+
+.badge-gold {
+  background: rgba(255, 184, 0, 0.15);
+  color: var(--text-gold);
+  border: 1px solid rgba(255, 184, 0, 0.35);
+}
+
+.badge-free {
+  background-color: var(--bg-muted);
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.badge-neutral {
+  background-color: var(--bg-muted);
+  color: var(--text-muted);
+}
+
+/* --- BUTTONS --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-sm {
+  font-size: 0.8125rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+}
+
+.btn-primary {
+  background-color: var(--color-primary-navy);
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  background-color: #0c3364;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme="dark"] .btn-primary {
+  background-color: var(--color-accent-gold);
+  color: #0B192C;
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background-color: var(--color-accent-gold-hover);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #FFB800 0%, #FF9900 100%);
+  color: #0B192C;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(255, 184, 0, 0.3);
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, #FFC107 0%, #FFA000 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(255, 184, 0, 0.4);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+}
+
+.btn-outline:hover {
+  background-color: var(--bg-muted);
+  border-color: var(--border-focus);
+}
+
+.btn-outline-white {
+  background-color: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline-white:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #FFFFFF;
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.btn-icon:hover {
+  background-color: var(--bg-muted);
+  color: var(--text-primary);
+}
+
+.btn-icon.active {
+  color: var(--color-accent-gold);
+}
+
+/* --- MODERN DIALOGS & MODALS (Sesuai animate-to-from-top-layer.md) --- */
+dialog {
+  padding: 0;
+  border: none;
+  background: transparent;
+  margin: auto;
+  max-width: 90vw;
+  max-height: 90vh;
+  outline: none;
+
+  /* Animasi Transisi Entry & Exit Top Layer */
+  opacity: 0;
+  transform: scale(0.95) translateY(10px);
+  transition-property: opacity, transform, display, overlay;
+  transition-duration: 0.25s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-behavior: allow-discrete;
+}
+
+dialog[open] {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+
+  @starting-style {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+}
+
+dialog::backdrop {
+  background-color: rgba(11, 25, 44, 0);
+  backdrop-filter: blur(0px);
+  transition:
+    display 0.25s allow-discrete,
+    overlay 0.25s allow-discrete,
+    background-color 0.25s ease-out,
+    backdrop-filter 0.25s ease-out;
+}
+
+dialog[open]::backdrop {
+  background-color: rgba(11, 25, 44, 0.65);
+  backdrop-filter: blur(4px);
+
+  @starting-style {
+    background-color: rgba(11, 25, 44, 0);
+    backdrop-filter: blur(0px);
+  }
+}
+
+.modal-card {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+  background-color: var(--bg-surface-elevated);
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.modal-body {
+  padding: 1.75rem;
+  overflow-y: auto;
+  max-height: calc(85vh - 140px);
+}
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1.25rem 1.75rem;
+  border-top: 1px solid var(--border-subtle);
+  background-color: var(--bg-surface-elevated);
+}
+
+/* Modal Sizes */
+.modal-sm { width: 440px; }
+.modal-md { width: 620px; }
+.modal-lg { width: 850px; }
+.modal-xl { width: 1040px; }
+
+/* Search Highlight */
+.search-highlight {
+  background-color: rgba(255, 184, 0, 0.35);
+  color: inherit;
+  font-weight: 700;
+  padding: 0 2px;
+  border-radius: 2px;
+}

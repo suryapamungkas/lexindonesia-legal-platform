@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "LexIndonesia - Asisten Riset Hukum",
+  "version": "1.0.0",
+  "author": "Nur Hidayat Surya Pamungkas",
+  "description": "Ekstensi riset hukum cerdas: pencarian cepat peraturan, validasi status hukum, dan anotasi pasal langsung ke My Workspace.",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "LexIndonesia Legal Assistant",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "background": {
+    "service_worker": "service-worker.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "permissions": [
+    "sidePanel",
+    "storage",
+    "activeTab",
+    "contextMenus"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-script.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

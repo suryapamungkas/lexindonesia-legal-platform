@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LexIndonesia - Platform Hukum Terintegrasi & Terpercaya di Indonesia</title>
+  <meta name="description" content="Platform ekosistem katalog produk hukum modern terintegrasi: Pusat Data Peraturan, Analisa Hukum, Regulatory Compliance System (RCS), Klinik, dan PKPA.">
+  <meta name="author" content="Nur Hidayat Surya Pamungkas">
+
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets Modular -->
+  <link rel="stylesheet" href="./src/css/variables.css">
+  <link rel="stylesheet" href="./src/css/reset.css">
+  <link rel="stylesheet" href="./src/css/components.css">
+  <link rel="stylesheet" href="./src/css/forms.css">
+  <link rel="stylesheet" href="./src/css/header.css">
+  <link rel="stylesheet" href="./src/css/hero.css">
+  <link rel="stylesheet" href="./src/css/products.css">
+  <link rel="stylesheet" href="./src/css/search.css">
+  <link rel="stylesheet" href="./src/css/workspace.css">
+  <link rel="stylesheet" href="./src/css/footer.css">
+</head>
+<body>
+
+  <!-- 1. FLOATING PROMOTIONAL BANNER (Dismissible) -->
+  <div id="floating-promo-banner" class="promo-banner" role="alert">
+    <div class="promo-banner-content">
+      <span class="banner-text" data-i18n="bannerPromo">
+        🎉 Penawaran Q3: Dapatkan Diskon 30% Akses Hukumonline 360 & Regulatory Compliance System (RCS) untuk Perusahaan.
+      </span>
+      <span class="banner-cta" data-i18n="claimOffer">Klaim Penawaran →</span>
+      <button type="button" class="btn-icon btn-close-banner" id="btn-close-promo" title="Tutup Notifikasi" aria-label="Tutup Notifikasi">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 2. TOP UTILITY BAR -->
+  <aside class="top-utility-bar" aria-label="Utility Navigation">
+    <div class="container top-utility-content">
+      <div class="top-utility-left">
+        <a href="#section-products" class="utility-link" id="btn-top-catalog">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span data-i18n="topCatalog">Katalog Produk Global</span>
+        </a>
+
+        <!-- Live RBAC Tier Switcher Simulator -->
+        <button type="button" class="tier-badge-btn tier-free" id="btn-tier-toggle" title="Klik untuk beralih antara Akun Free dan Pro Subscriber">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span id="tier-badge-text">Status: Free User</span>
+          <span style="font-size: 0.65rem; opacity: 0.8;">(Klik ganti)</span>
+        </button>
+      </div>
+
+      <div class="top-utility-right">
+        <!-- Language Switcher -->
+        <button type="button" class="btn-utility-icon" id="btn-lang-toggle" title="Ganti Bahasa (ID / EN)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span id="lang-label">ID</span>
+        </button>
+
+        <!-- Dark/Light Theme Toggle -->
+        <button type="button" class="btn-utility-icon" id="btn-theme-toggle" title="Ubah Tema Gelap / Terang">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Subscription CTA -->
+        <button type="button" class="btn-top-cta" id="btn-top-subscribe" data-i18n="subscribePro">
+          Berlangganan Pro
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 3. MAIN NAVIGATION ROW -->
+  <header class="main-header" role="banner">
+    <div class="container main-header-content">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo" aria-label="LexIndonesia Legal Platform Beranda">
+        <div class="logo-symbol">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 3v18"></path>
+            <path d="M4 7l8-4 8 4"></path>
+            <path d="M4 7v5a4 4 0 0 0 8 0V7"></path>
+            <path d="M20 7v5a4 4 0 0 1-8 0V7"></path>
+            <path d="M8 21h8"></path>
+          </svg>
+        </div>
+        <div class="logo-text-wrap">
+          <span class="logo-brand-name">LEX<span>INDONESIA</span></span>
+          <span class="logo-tagline">Integrated Legal Ecosystem</span>
+        </div>
+      </a>
+
+      <!-- Global Search Button in Header -->
+      <div class="header-search-wrap">
+        <button type="button" class="header-search-btn" id="btn-header-search" data-action="open-search-modal" title="Pencarian Cepat (Ctrl+K)" aria-label="Search">
+          <span class="header-search-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </span>
+          <span class="header-search-text">Search</span>
+        </button>
+      </div>
+
+      <!-- Megamenu Navigation -->
+      <nav class="main-nav" id="main-nav-menu" role="navigation" aria-label="Menu Utama">
+        <!-- 1. Kategori PRO -->
+        <div class="nav-item">
+          <a href="#section-products" class="nav-link" data-nav-category="pro">
+            <span data-i18n="navPro">Pro</span>
+            <svg class="nav-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </a>
+          <div class="megamenu">
+            <a href="#section-search" class="megamenu-item" data-nav-category="pro">
+              <span class="megamenu-icon">📁</span>
+              <div>
+                <div class="megamenu-title">Pusat Data <span class="badge badge-pro">PRO</span></div>
+                <div class="megamenu-desc">180.000+ database UU, PP, dan putusan MA & MK terintegrasi.</div>
+              </div>
+            </a>
+            <a href="#section-products" class="megamenu-item" data-nav-category="pro">
+              <span class="megamenu-icon">📝</span>
+              <div>
+                <div class="megamenu-title">Analisa Hukum & Premium Stories</div>
+                <div class="megamenu-desc">Kajian regulasi dwibahasa dan rujukan praktisi in-house.</div>
+              </div>
+            </a>
+            <a href="#section-products" class="megamenu-item" data-nav-category="pro">
+              <span class="megamenu-icon">📡</span>
+              <div>
+                <div class="megamenu-title">Legal Intelligence Updates</div>
+                <div class="megamenu-desc">Pantauan draf RUU Prolegnas dan regulasi strategis kementerian.</div>
+              </div>
+            </a>
+            <a href="javascript:void(0)" class="megamenu-item" data-action="open-workspace">
+              <span class="megamenu-icon">💼</span>
+              <div>
+                <div class="megamenu-title">My Workspace</div>
+                <div class="megamenu-desc">Anotasi pasal, manajemen bookmark, dan sinkronisasi ekstensi.</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Kategori SOLUSI -->
+        <div class="nav-item">
+          <a href="#section-products" class="nav-link" data-nav-category="solusi">
+            <span data-i18n="navSolusi">Solusi</span>
+            <svg class="nav-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </a>
+          <div class="megamenu">
+            <a href="#section-products" class="megamenu-item" data-nav-category="solusi">
+              <span class="megamenu-icon">🤖</span>
+              <div>
+                <div class="megamenu-title">Regulatory Compliance System (RCS)</div>
+                <div class="megamenu-desc">Pelacak kewajiban hukum korporasi berbasis kecerdasan buatan.</div>
+              </div>
+            </a>
+            <a href="#section-products" class="megamenu-item" data-nav-category="solusi">
+              <span class="megamenu-icon">🛡️</span>
+              <div>
+                <div class="megamenu-title">Document Management System & 360</div>
+                <div class="megamenu-desc">Repositori kontrak aman dan paket suite all-in-one perusahaan.</div>
+              </div>
+            </a>
+            <a href="#section-products" class="megamenu-item" data-nav-category="solusi">
+              <span class="megamenu-icon">🏢</span>
+              <div>
+                <div class="megamenu-title">Perizinan Usaha & Dokumen Legal</div>
+                <div class="megamenu-desc">OSS RBA, pendirian PT, dan pembuatan kontrak bersama advokat.</div>
+              </div>
+            </a>
+            <a href="#section-products" class="megamenu-item" data-nav-category="solusi">
+              <span class="megamenu-icon">🎓</span>
+              <div>
+                <div class="megamenu-title">University Solutions</div>
+                <div class="megamenu-desc">Portal akses riset ilmiah bagi civitas akademika kampus.</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 3. Kategori INFO HUKUM -->
+        <div class="nav-item">
+          <a href="#section-products" class="nav-link" data-nav-category="info-hukum">
+            <span data-i18n="navInfoHukum">Info Hukum</span>
+            <svg class="nav-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </a>
+          <div class="megamenu">
+            <a href="#section-products" class="megamenu-item" data-nav-category="info-hukum">
+              <span class="megamenu-icon">💬</span>
+              <div>
+                <div class="megamenu-title">Klinik Hukum <span class="badge badge-free">GRATIS</span></div>
+                <div class="megamenu-desc">50.000+ konsultasi tanya-jawab hukum masyarakat terbuka bebas.</div>
+              </div>
+            </a>
+            <a href="#section-products" class="megamenu-item" data-nav-category="info-hukum">
+              <span class="megamenu-icon">📺</span>
+              <div>
+                <div class="megamenu-title">Hukumonline Stream</div>
+                <div class="megamenu-desc">Video podcast, wawancara hakim, dan bedah regulasi populer.</div>
+              </div>
+            </a>
+            <a href="#section-products" class="megamenu-item" data-nav-category="info-hukum">
+              <span class="megamenu-icon">📰</span>
+              <div>
+                <div class="megamenu-title">Jurnal & Berita Peradilan</div>
+                <div class="megamenu-desc">Liputan berita hukum 24/7 dan jurnal ilmiah terakreditasi.</div>
+              </div>
+            </a>
+            <a href="#section-products" class="megamenu-item" data-nav-category="info-hukum">
+              <span class="megamenu-icon">🔒</span>
+              <div>
+                <div class="megamenu-title">Datapribadi.id</div>
+                <div class="megamenu-desc">Panduan komprehensif implementasi UU Pelindungan Data Pribadi.</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. Kategori EVENT & AWARDS -->
+        <div class="nav-item">
+          <a href="#section-products" class="nav-link" data-nav-category="events-awards">
+            <span data-i18n="navEvents">Event & Awards</span>
+            <svg class="nav-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </a>
+          <div class="megamenu">
+            <a href="#section-products" class="megamenu-item" data-nav-category="events-awards">
+              <span class="megamenu-icon">📅</span>
+              <div>
+                <div class="megamenu-title">Events & Training / Online Course</div>
+                <div class="megamenu-desc">Webinar CPD tersertifikasi, legal drafting & negosiasi kontrak.</div>
+              </div>
+            </a>
+            <a href="#section-products" class="megamenu-item" data-nav-category="events-awards">
+              <span class="megamenu-icon">⚖️</span>
+              <div>
+                <div class="megamenu-title">PKPA Resmi PERADI</div>
+                <div class="megamenu-desc">Pendidikan advokat bekerjasama dengan DPN PERADI & Universitas.</div>
+              </div>
+            </a>
+            <a href="#section-products" class="megamenu-item" data-nav-category="events-awards">
+              <span class="megamenu-icon">🏆</span>
+              <div>
+                <div class="megamenu-title">Indonesian Law Awards</div>
+                <div class="megamenu-desc">Pemeringkatan Top 100 Law Firms & In-House Counsel Leaders.</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- User Auth & Workspace Trigger Actions -->
+      <div class="header-actions">
+        <!-- My Workspace Drawer Trigger -->
+        <button type="button" class="btn-workspace-trigger" data-action="open-workspace" title="Buka My Workspace">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span data-i18n="myWorkspace">Workspace</span>
+          <span class="workspace-badge" id="workspace-badge-count">0</span>
+        </button>
+
+        <button type="button" class="btn btn-sm btn-outline-white" data-action="open-login" data-i18n="login">
+          Masuk
+        </button>
+        <button type="button" class="btn btn-sm btn-gold" data-action="open-register" data-i18n="register">
+          Daftar
+        </button>
+
+        <!-- Mobile Nav Toggle -->
+        <button type="button" class="btn-icon mobile-toggle" id="mobile-nav-toggle" aria-expanded="false" aria-label="Buka Menu Navigasi">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+
+    <!-- 4. HERO SECTION -->
+    <section class="hero-section" aria-label="Hero Introduction">
+      <div class="hero-pattern-overlay"></div>
+      
+      <!-- Subtle Decorative Scales Monogram -->
+      <div class="hero-watermark" aria-hidden="true">
+        <svg width="450" height="450" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8">
+          <path d="M12 3v18"></path>
+          <path d="M4 7l8-4 8 4"></path>
+          <path d="M4 7v5a4 4 0 0 0 8 0V7"></path>
+          <path d="M20 7v5a4 4 0 0 1-8 0V7"></path>
+          <path d="M8 21h8"></path>
+        </svg>
+      </div>
+
+      <div class="container hero-content">
+        <div class="hero-badge-pill">
+          <span>🏛️ EKOSISTEM KATALOG PRODUK HUKUM TERLENGKAP</span>
+        </div>
+
+        <h1 class="hero-heading" data-i18n="heroTitle">
+          Platform Hukum Terintegrasi & <span>Terpercaya di Indonesia</span>
+        </h1>
+
+        <p class="hero-subtitle" data-i18n="heroSubtitle">
+          Solusi terlengkap kecerdasan hukum, pusat data 180.000+ regulasi & putusan pengadilan, sistem kepatuhan AI, dan program edukasi profesional untuk korporasi, kantor hukum, dan publik.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="hero-cta-group">
+          <button type="button" class="btn btn-gold" data-action="open-contact" data-i18n="ctaContact">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            Hubungi Kami
+          </button>
+          <a href="#section-products" class="btn btn-outline-white" data-i18n="ctaExplore">
+            Eksplorasi Solusi →
+          </a>
+          <button type="button" class="btn btn-outline-white" data-action="open-demo">
+            Coba Demo Pro Gratis
+          </button>
+        </div>
+
+        <!-- Quick Search Bar in Hero -->
+        <div class="hero-search-container">
+          <div class="hero-search-input-wrap">
+            <span class="hero-search-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </span>
+            <input 
+              type="text" 
+              id="hero-quick-input" 
+              class="hero-search-field" 
+              placeholder="Cari peraturan (contoh: UU PDP, Cipta Kerja, Pesangon, Putusan MK)..."
+            >
+            <button type="button" class="btn btn-primary btn-sm" id="btn-hero-search">
+              Cari Sekarang
+            </button>
+          </div>
+
+          <!-- Popular Search Chips -->
+          <div class="hero-chips-wrap">
+            <span class="hero-chips-label" data-i18n="popularSearch">Pencarian Populer:</span>
+            <button type="button" class="hero-chip-btn" data-search-tag="Cipta Kerja">UU Cipta Kerja</button>
+            <button type="button" class="hero-chip-btn" data-search-tag="Data Pribadi">Pelindungan Data Pribadi</button>
+            <button type="button" class="hero-chip-btn" data-search-tag="Pesangon">Pesangon & PKWT</button>
+            <button type="button" class="hero-chip-btn" data-search-tag="PT">Hukum Perseroan (PT)</button>
+            <button type="button" class="hero-chip-btn" data-search-tag="Merek">Putusan Sengketa Merek</button>
+          </div>
+        </div>
+
+        <!-- Credibility Counters -->
+        <div class="hero-stats-grid">
+          <div class="stat-item">
+            <div class="stat-value">180.000+</div>
+            <div class="stat-label">Peraturan & Putusan Terindeks</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">1.500+</div>
+            <div class="stat-label">Mitra Korporasi & Firma Hukum</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">3.200.000+</div>
+            <div class="stat-label">Putusan Pengadilan MA & MK</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">99.8%</div>
+            <div class="stat-label">Akurasi & Keberlakuan Hukum</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. GLOBAL SEARCH ENGINE & INDEXED FILTERS SECTION -->
+    <section id="section-search" class="search-section" aria-label="Mesin Pencari Hukum Terindeks">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">MESIN PENCARI CERDAS</span>
+          <h2 class="section-title">Pusat Data Regulasi & Yurisprudensi</h2>
+          <p class="section-desc">
+            Cari dan bandingkan peraturan perundang-undangan Republik Indonesia, pertimbangan hakim, serta kajian analisa hukum dengan filter multi-dimensi secara realtime.
+          </p>
+        </div>
+
+        <!-- Search & Filter Controls -->
+        <div class="search-filter-box">
+          <div class="search-input-row">
+            <span class="search-icon-inside">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </span>
+            <input 
+              type="text" 
+              id="global-search-input" 
+              class="search-main-input" 
+              placeholder="Masukkan nomor peraturan, judul, kata kunci pasal, atau istilah hukum..."
+            >
+          </div>
+
+          <!-- Multi-facet Filter Selectors -->
+          <div class="filter-facets-row">
+            <div class="facet-item">
+              <label for="filter-type" class="facet-label" data-i18n="searchFilterType">Jenis Regulasi / Konten</label>
+              <select id="filter-type" class="facet-select">
+                <option value="all">Semua Jenis Regulasi</option>
+                <option value="uu">Undang-Undang (UU)</option>
+                <option value="pp">Peraturan Pemerintah (PP)</option>
+                <option value="putusan">Putusan Pengadilan (MA & MK)</option>
+                <option value="analisa">Analisa Hukum & Stories</option>
+                <option value="klinik">Klinik Hukum (Tanya Jawab)</option>
+              </select>
+            </div>
+
+            <div class="facet-item">
+              <label for="filter-sector" class="facet-label" data-i18n="searchFilterSector">Bidang Hukum / Sektor</label>
+              <select id="filter-sector" class="facet-select">
+                <option value="all">Semua Bidang Hukum</option>
+                <option value="siber">Privasi Data & Siber</option>
+                <option value="ketenagakerjaan">Ketenagakerjaan</option>
+                <option value="keuangan">Perbankan & Fintech</option>
+                <option value="korporasi">Korporasi & Bisnis</option>
+                <option value="hki">Hak Kekayaan Intelektual (HKI)</option>
+                <option value="perdata">Perdata & Keluarga</option>
+                <option value="pidana">Hukum Pidana</option>
+              </select>
+            </div>
+
+            <div class="facet-item">
+              <label for="filter-year" class="facet-label" data-i18n="searchFilterYear">Tahun Pengundangan</label>
+              <select id="filter-year" class="facet-select">
+                <option value="all">Semua Tahun</option>
+                <option value="recent">Terbaru (2024 - 2026)</option>
+                <option value="mid">Menengah (2021 - 2023)</option>
+                <option value="past">Klasik (2000 - 2020)</option>
+              </select>
+            </div>
+
+            <div class="facet-item">
+              <label for="filter-access" class="facet-label" data-i18n="searchFilterAccess">Tingkat Akses Dokumen</label>
+              <select id="filter-access" class="facet-select">
+                <option value="all">Semua Tingkat Akses</option>
+                <option value="free">Terbuka / Publik</option>
+                <option value="pro">Khusus Berlangganan Pro</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search Results Count Status -->
+        <div class="search-status-bar">
+          <span class="search-results-count" id="search-results-count">Memuat dokumen hukum...</span>
+          <div class="search-shortcuts-hint">
+            <span style="font-size: 0.8125rem; color: var(--text-muted);">
+              Tekan <kbd class="header-search-kbd">Ctrl+K</kbd> untuk modal pencarian cepat
+            </span>
+          </div>
+        </div>
+
+        <!-- Render Container for Document Cards -->
+        <div id="search-results-container" class="doc-cards-list">
+          <!-- Diisi secara dinamis oleh searchEngine.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PRODUCT & SERVICE GRID SECTIONS (4 KATEGORI UTAMA) -->
+    <section id="section-products" class="products-section" aria-label="Katalog Produk dan Layanan">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">EKOSISTEM SOLUSI HUKUM</span>
+          <h2 class="section-title">Katalog Produk & Layanan Terintegrasi</h2>
+          <p class="section-desc">
+            Didesain khusus untuk memenuhi kebutuhan divisi legal korporasi, kantor hukum, akademisi fakultas hukum, dan masyarakat pencari keadilan.
+          </p>
+        </div>
+
+        <!-- Category Switching Tabs -->
+        <div class="category-tabs-wrap" role="tablist" aria-label="Pilihan Kategori Produk">
+          <button type="button" class="category-tab-btn active" data-category-tab="all" role="tab" aria-selected="true">
+            Semua Produk & Layanan
+          </button>
+          <button type="button" class="category-tab-btn" data-category-tab="pro" role="tab" aria-selected="false">
+            PRO (Legal Intelligence)
+          </button>
+          <button type="button" class="category-tab-btn" data-category-tab="solusi" role="tab" aria-selected="false">
+            SOLUSI (Enterprise & Tech)
+          </button>
+          <button type="button" class="category-tab-btn" data-category-tab="info-hukum" role="tab" aria-selected="false">
+            INFO HUKUM (Media & Riset)
+          </button>
+          <button type="button" class="category-tab-btn" data-category-tab="events-awards" role="tab" aria-selected="false">
+            EVENT & AWARDS (Edukasi)
+          </button>
+        </div>
+
+        <!-- Render Container for Product Cards -->
+        <div id="products-grid-container" class="products-grid">
+          <!-- Diisi secara dinamis oleh productGrid.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. COMPANION EXTENSION FEATURE BANNER -->
+    <section class="section-divider" style="background-color: var(--bg-surface);">
+      <div class="container">
+        <div style="background: linear-gradient(135deg, #0B192C 0%, #172C4C 100%); border-radius: var(--radius-lg); padding: 3rem; color: #FFFFFF; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;">
+          <div style="max-width: 620px;">
+            <span class="badge badge-pro" style="margin-bottom: 1rem;">COMPANION EXTENSION (MANIFEST V3)</span>
+            <h3 style="font-size: 1.85rem; font-weight: 800; line-height: 1.25; margin-bottom: 0.75rem;">
+              Riset Hukum Lebih Cepat dengan Chrome Extension
+            </h3>
+            <p style="color: #CBD5E1; font-size: 0.9375rem; line-height: 1.6; margin-bottom: 1.5rem;">
+              Sorot teks undang-undang di halaman web manapun (JDIH, portal berita, atau berkas pengadilan), buka Side Panel otomatis, periksa status keberlakuan, dan simpan anotasi pasal langsung ke <strong>My Workspace</strong> Anda.
+            </p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <button type="button" class="btn btn-gold" data-action="open-workspace">
+                Buka Workspace & Ekstensi →
+              </button>
+              <button type="button" class="btn btn-outline-white" data-action="open-demo">
+                Unduh Paket Ekstensi (.zip)
+              </button>
+            </div>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: var(--radius-md); padding: 1.5rem; width: 300px; text-align: center;">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⚡</div>
+            <div style="font-weight: 700; font-size: 1.05rem; margin-bottom: 0.25rem;">Fitur Side Panel API</div>
+            <p style="font-size: 0.75rem; color: #94A3B8;">Didukung teknologi Chrome Extension MV3 dengan sinkronisasi local workspace aman.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. TRUSTED TESTIMONIALS SECTION -->
+    <section class="section-divider" style="background-color: var(--bg-body);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">TESTIMONI MITRA HUKUM</span>
+          <h2 class="section-title">Dipercaya Pemimpin Industri Hukum</h2>
+          <p class="section-desc">
+            Lihat bagaimana kantor hukum papan atas dan pimpinan divisi legal korporasi meningkatkan akurasi analisis hukum mereka bersama kami.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem;">
+          <div style="background-color: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; justify-content: space-between;">
+            <p style="font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem; font-style: italic;">
+              "Pusat Data dan Analisa Hukum platform ini menjadi rujukan utama tim litigasi kami sebelum menyusun memori kasasi. Kecepatan indeks dan keakuratan status keberlakuan peraturan sungguh tak tertandingi."
+            </p>
+            <div style="display: flex; align-items: center; gap: 0.75rem; border-top: 1px solid var(--border-subtle); padding-top: 1rem;">
+              <div style="width: 40px; height: 40px; border-radius: 50%; background-color: var(--color-primary-navy); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700;">AW</div>
+              <div>
+                <h5 style="font-size: 0.875rem; font-weight: 700; color: var(--text-primary);">Dr. Arifin Wijaya, S.H., LL.M.</h5>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Senior Partner, Wijaya & Rekan</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="background-color: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; justify-content: space-between;">
+            <p style="font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem; font-style: italic;">
+              "Regulatory Compliance System (RCS) telah memotong waktu audit kepatuhan perusahaan kami hingga 60%. Peringatan dini atas perubahan regulasi OJK dan BI sangat membantu mitigasi risiko korporasi."
+            </p>
+            <div style="display: flex; align-items: center; gap: 0.75rem; border-top: 1px solid var(--border-subtle); padding-top: 1rem;">
+              <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #FFB800 0%, #FF9900 100%); color: #0B192C; display: flex; align-items: center; justify-content: center; font-weight: 700;">NP</div>
+              <div>
+                <h5 style="font-size: 0.875rem; font-weight: 700; color: var(--text-primary);">Nathania Putri, S.H.</h5>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Head of Legal & Compliance, FinTech Nusantara</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="background-color: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; justify-content: space-between;">
+            <p style="font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem; font-style: italic;">
+              "University Solutions membuka gerbang riset tak terbatas bagi mahasiswa dan peneliti kami. Sangat terstruktur, kredibel, dan esensial bagi kemajuan pendidikan hukum nasional."
+            </p>
+            <div style="display: flex; align-items: center; gap: 0.75rem; border-top: 1px solid var(--border-subtle); padding-top: 1rem;">
+              <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #3B82F6; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700;">BS</div>
+              <div>
+                <h5 style="font-size: 0.875rem; font-weight: 700; color: var(--text-primary);">Prof. Budi Santoso, S.H.</h5>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Dekan Fakultas Hukum Nasional</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 9. FOOTER ARCHITECTURE -->
+  <footer class="main-footer" role="contentinfo">
+    <div class="container">
+      <!-- Top Grid: Office info & Categorized Nav Links -->
+      <div class="footer-top-grid">
+        <!-- Brand & Office Info -->
+        <div class="footer-brand-col">
+          <div class="footer-logo">
+            <div class="logo-symbol">⚖️</div>
+            <div class="logo-text-wrap">
+              <span class="logo-brand-name">LEX<span>INDONESIA</span></span>
+              <span class="logo-tagline">Integrated Legal Ecosystem</span>
+            </div>
+          </div>
+
+          <address class="footer-address">
+            <strong>PT Lex Media Nusantara</strong><br>
+            Puri Imperium Office Plaza, Ground Floor Unit G-08<br>
+            Jl. Kuningan Madya Kav. 5-6, Kuningan, Setiabudi<br>
+            Jakarta Selatan 12980, Republik Indonesia
+          </address>
+
+          <div class="footer-contact-links">
+            <div class="footer-contact-item">
+              <span>📞 Telepon:</span>
+              <a href="tel:+622152904000">+62 21 5290 4000</a>
+            </div>
+            <div class="footer-contact-item">
+              <span>📠 Faks:</span>
+              <span>+62 21 5290 4001</span>
+            </div>
+            <div class="footer-contact-item">
+              <span>✉️ Redaksi:</span>
+              <a href="mailto:redaksi@lexindonesia.id">redaksi@lexindonesia.id</a>
+            </div>
+            <div class="footer-contact-item">
+              <span>💼 Corporate Sales:</span>
+              <a href="mailto:sales@lexindonesia.id">sales@lexindonesia.id</a>
+            </div>
+          </div>
+
+          <!-- Social Media Icons -->
+          <div class="footer-social-wrap">
+            <span class="social-title">Ikuti Media Kami:</span>
+            <div class="social-icons-row">
+              <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-link" title="LinkedIn" aria-label="LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener" class="social-link" title="Instagram" aria-label="Instagram">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener" class="social-link" title="X (Twitter)" aria-label="X (Twitter)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+              </a>
+              <a href="https://facebook.com" target="_blank" rel="noopener" class="social-link" title="Facebook" aria-label="Facebook">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+              </a>
+              <a href="https://tiktok.com" target="_blank" rel="noopener" class="social-link" title="TikTok" aria-label="TikTok">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener" class="social-link" title="YouTube" aria-label="YouTube">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categorized Nav Columns -->
+        <div class="footer-nav-grid">
+          <div class="footer-nav-col">
+            <h4 class="footer-col-title">PRO (INTELLIGENCE)</h4>
+            <ul class="footer-links-list">
+              <li><a href="#section-search">Pusat Data Peraturan</a></li>
+              <li><a href="#section-search">Putusan Mahkamah Agung</a></li>
+              <li><a href="#section-search">Putusan Mahkamah Konstitusi</a></li>
+              <li><a href="#section-products">Analisa Hukum Bilingual</a></li>
+              <li><a href="#section-products">Premium Stories</a></li>
+              <li><a href="#section-products">Legal Intelligence Updates</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-nav-col">
+            <h4 class="footer-col-title">SOLUSI ENTERPRISE</h4>
+            <ul class="footer-links-list">
+              <li><a href="#section-products">Regulatory Compliance (RCS)</a></li>
+              <li><a href="#section-products">Hukumonline 360 All-in-One</a></li>
+              <li><a href="#section-products">Document Management System</a></li>
+              <li><a href="#section-products">University Knowledge Hub</a></li>
+              <li><a href="#section-products">Perizinan OSS RBA</a></li>
+              <li><a href="#section-products">Pembuatan Draft Kontrak</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-nav-col">
+            <h4 class="footer-col-title">INFO & EDUKASI</h4>
+            <ul class="footer-links-list">
+              <li><a href="#section-products">Klinik Tanya Jawab Hukum</a></li>
+              <li><a href="#section-products">Hukumonline Stream Video</a></li>
+              <li><a href="#section-products">Jurnal Hukum Terakreditasi</a></li>
+              <li><a href="#section-products">Pusat Panduan UU PDP</a></li>
+              <li><a href="#section-products">PKPA Resmi PERADI</a></li>
+              <li><a href="#section-products">Events & CPD Masterclass</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-nav-col">
+            <h4 class="footer-col-title">PERUSAHAAN</h4>
+            <ul class="footer-links-list">
+              <li><a href="javascript:void(0)" data-action="open-contact">Tentang LexIndonesia</a></li>
+              <li><a href="javascript:void(0)" data-action="open-contact">Karir & Rekrutmen</a></li>
+              <li><a href="javascript:void(0)" data-action="open-contact">Hubungan Investor</a></li>
+              <li><a href="javascript:void(0)" data-action="open-contact">Pedoman Pemberitaan Siber</a></li>
+              <li><a href="javascript:void(0)" id="btn-cookie-settings">Pengaturan Cookies</a></li>
+              <li><a href="javascript:void(0)" data-action="open-contact">Bantuan & Dukungan</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certifications & Compliance Badges -->
+      <div class="footer-certifications-row">
+        <div class="cert-badges-group">
+          <div class="cert-badge-item">
+            <span class="cert-icon">🛡️</span>
+            <div class="cert-info">
+              <span class="cert-name">ISO/IEC 27001:2022</span>
+              <span class="cert-desc">Sistem Manajemen Keamanan Informasi</span>
+            </div>
+          </div>
+
+          <div class="cert-badge-item">
+            <span class="cert-icon">🏅</span>
+            <div class="cert-info">
+              <span class="cert-name">ISO 9001:2015</span>
+              <span class="cert-desc">Sistem Manajemen Mutu Layanan</span>
+            </div>
+          </div>
+
+          <div class="cert-badge-item">
+            <span class="cert-icon">🏛️</span>
+            <div class="cert-info">
+              <span class="cert-name">PSE Kominfo RI</span>
+              <span class="cert-desc">Terdaftar Resmi No. 002931.01/DJAI.PSE</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size: 0.78125rem; color: #94A3B8;">
+          <span>Privasi & Keamanan Data Tersertifikasi Standar Global</span>
+        </div>
+      </div>
+
+      <!-- Bottom Copyright Row -->
+      <div class="footer-bottom-row">
+        <div>
+          © 2026 LexIndonesia Legal Platform. Developed & Owned by <strong>Nur Hidayat Surya Pamungkas</strong>. Hak Cipta Dilindungi Undang-Undang.
+        </div>
+        <div class="footer-legal-links">
+          <a href="javascript:void(0)">Syarat & Ketentuan</a>
+          <a href="javascript:void(0)">Kebijakan Privasi</a>
+          <a href="javascript:void(0)">Kebijakan Anti-Suap & Korupsi</a>
+          <a href="javascript:void(0)">Peta Situs</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL DIALOGS (SESUAI modern-web-guidance) ==================== -->
+
+  <!-- 1. COOKIE PREFERENCES MODAL (<dialog closedby="any">) -->
+  <dialog id="cookie-modal" closedby="any" aria-labelledby="cookie-modal-title">
+    <div class="modal-card modal-md">
+      <div class="modal-header">
+        <h3 id="cookie-modal-title" class="modal-title">🍪 Preferensi Cookie & Privasi Data</h3>
+        <button type="button" class="btn-icon" data-action="close-modal" aria-label="Tutup Modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.5;">
+          Kami menggunakan cookies penting agar situs dapat beroperasi dengan baik, serta cookies analitik dan personalisasi untuk menyajikan konten hukum yang relevan dengan kebutuhan riset Anda sesuai UU PDP No. 27/2022.
+        </p>
+
+        <div class="pref-row">
+          <div class="pref-label-wrap">
+            <h5>Cookies Esensial (Wajib)</h5>
+            <p>Diperlukan untuk otentikasi login, keamanan sesi, dan fungsionalitas keranjang langganan.</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" checked disabled>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="pref-row">
+          <div class="pref-label-wrap">
+            <h5>Cookies Analitik & Kinerja</h5>
+            <p>Membantu kami memahami interaksi pengguna untuk meningkatkan kecepatan pencarian data peraturan.</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="cookie-pref-analytics" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="pref-row">
+          <div class="pref-label-wrap">
+            <h5>Cookies Personalisasi Riset</h5>
+            <p>Menyimpan preferensi tampilan workspace, riwayat filter dokumen, dan catatan pasal Anda.</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="cookie-pref-personalization" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="pref-row">
+          <div class="pref-label-wrap">
+            <h5>Cookies Informasi Promosi</h5>
+            <p>Menampilkan pengumuman promo webinar, sertifikasi PKPA, dan diskon paket korporasi.</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="cookie-pref-marketing">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" id="btn-cookie-save-pref">Simpan Pilihan</button>
+        <button type="button" class="btn btn-primary" id="btn-cookie-accept-all">Setujui Semua</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 2. QUICK COMMAND SEARCH MODAL (Ctrl+K) -->
+  <dialog id="search-modal" closedby="any" aria-labelledby="quick-search-title">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <h3 id="quick-search-title" class="modal-title">Pencarian Cepat Dokumen Hukum</h3>
+        </div>
+        <button type="button" class="btn-icon" data-action="close-modal" aria-label="Tutup">✕</button>
+      </div>
+      <div class="modal-body" style="padding-top: 1rem;">
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <input 
+            type="text" 
+            id="modal-search-input" 
+            class="form-input" 
+            placeholder="Ketik kata kunci, nomor UU, atau perkara putusan..." 
+            autofocus
+          >
+        </div>
+        <div id="modal-search-results" style="max-height: 380px; overflow-y: auto;">
+          <p class="modal-search-hint">Ketik untuk mencari langsung di indeks 180.000+ peraturan...</p>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 3. AUTH MODAL (MASUK & DAFTAR DENGAN :USER-INVALID VALIDASI) -->
+  <dialog id="auth-modal" closedby="any" aria-labelledby="auth-modal-title">
+    <div class="modal-card modal-md">
+      <div class="modal-header">
+        <h3 id="auth-modal-title" class="modal-title">Akses Akun Hukum LexIndonesia</h3>
+        <button type="button" class="btn-icon" data-action="close-modal" aria-label="Tutup">✕</button>
+      </div>
+      <div class="modal-body">
+        <!-- Auth Tabs -->
+        <div style="display: flex; border-bottom: 2px solid var(--border-subtle); margin-bottom: 1.5rem;">
+          <button type="button" class="auth-tab-btn active" data-auth-tab="login" style="flex: 1; padding: 0.75rem; font-weight: 700; border-bottom: 2px solid var(--color-primary-navy); margin-bottom: -2px;">
+            Masuk Akun
+          </button>
+          <button type="button" class="auth-tab-btn" data-auth-tab="register" style="flex: 1; padding: 0.75rem; font-weight: 700; color: var(--text-muted);">
+            Daftar Baru
+          </button>
+        </div>
+
+        <!-- FORM LOGIN -->
+        <form id="login-form" style="display: flex; flex-direction: column;" novalidate>
+          <div class="form-group">
+            <label for="login-email" class="form-label">Alamat Email Profesional</label>
+            <span class="form-hint">Format: nama@perusahaan.com</span>
+            <input 
+              type="email" 
+              id="login-email" 
+              name="email" 
+              class="form-input" 
+              required 
+              autocomplete="email" 
+              placeholder="user@hukum.id"
+            >
+            <div class="form-error">❌ Masukkan alamat email yang valid.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="login-password" class="form-label">Kata Sandi</label>
+            <input 
+              type="password" 
+              id="login-password" 
+              name="password" 
+              class="form-input" 
+              required 
+              minlength="6" 
+              placeholder="••••••••"
+            >
+            <div class="form-error">❌ Kata sandi minimal 6 karakter.</div>
+          </div>
+
+          <label class="form-label" style="margin-bottom: 0.5rem;">Pilih Tingkatan Akses yang Diinginkan:</label>
+          <div class="tier-selection-grid">
+            <label class="tier-radio-card">
+              <input type="radio" name="auth-tier" value="free">
+              <div class="tier-radio-header">
+                <span class="tier-radio-title">Akun Publik</span>
+                <span class="badge badge-free">Gratis</span>
+              </div>
+              <p class="tier-radio-desc">Akses artikel berita, tanya-jawab klinik, dan daftar regulasi terbuka.</p>
+            </label>
+
+            <label class="tier-radio-card">
+              <input type="radio" name="auth-tier" value="pro" checked>
+              <div class="tier-radio-header">
+                <span class="tier-radio-title">Member Pro</span>
+                <span class="badge badge-pro">Lengkap</span>
+              </div>
+              <p class="tier-radio-desc">Buka analisa hukum, teks peraturan konsolidasi, dan tool workspace.</p>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Masuk ke Platform</button>
+        </form>
+
+        <!-- FORM REGISTER -->
+        <form id="register-form" style="display: none; flex-direction: column;" novalidate>
+          <div class="form-group">
+            <label for="reg-name" class="form-label">Nama Lengkap & Gelar</label>
+            <input type="text" id="reg-name" name="name" class="form-input" required placeholder="Contoh: Pratama Wijaya, S.H.">
+            <div class="form-error">❌ Nama lengkap wajib diisi.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-email" class="form-label">Alamat Email Kerja / Kampus</label>
+            <input type="email" id="reg-email" name="email" class="form-input" required placeholder="nama@lawfirm.id">
+            <div class="form-error">❌ Masukkan alamat email yang valid.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-company" class="form-label">Institusi / Perusahaan / Universitas</label>
+            <input type="text" id="reg-company" name="company" class="form-input" required placeholder="Nama Kantor Hukum atau Korporasi">
+          </div>
+
+          <label class="form-label" style="margin-bottom: 0.5rem;">Pilih Paket Pendaftaran:</label>
+          <div class="tier-selection-grid">
+            <label class="tier-radio-card">
+              <input type="radio" name="reg-tier" value="free">
+              <div class="tier-radio-header">
+                <span class="tier-radio-title">Publik</span>
+                <span class="badge badge-free">Gratis</span>
+              </div>
+              <p class="tier-radio-desc">Akses dasar untuk kebutuhan umum.</p>
+            </label>
+
+            <label class="tier-radio-card">
+              <input type="radio" name="reg-tier" value="pro" checked>
+              <div class="tier-radio-header">
+                <span class="tier-radio-title">Trial Pro</span>
+                <span class="badge badge-pro">14 Hari</span>
+              </div>
+              <p class="tier-radio-desc">Akses penuh ke seluruh fitur intelligence.</p>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-gold" style="width: 100%;">Daftar Sekarang</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 4. CORPORATE CONTACT & DEMO MODAL -->
+  <dialog id="contact-modal" closedby="any" aria-labelledby="contact-modal-title">
+    <div class="modal-card modal-md">
+      <div class="modal-header">
+        <h3 id="contact-modal-title" class="modal-title">Konsultasi Solusi Korporasi & Demo</h3>
+        <button type="button" class="btn-icon" data-action="close-modal" aria-label="Tutup">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="contact-form" novalidate>
+          <div class="form-group">
+            <label for="contact-name" class="form-label">Nama Narahubung</label>
+            <input type="text" id="contact-name" class="form-input" required placeholder="Nama Lengkap Anda">
+          </div>
+          <div class="form-group">
+            <label for="contact-corp" class="form-label">Nama Korporasi / Firma Hukum / Instansi</label>
+            <input type="text" id="contact-corp" class="form-input" required placeholder="PT / Kantor Hukum">
+          </div>
+          <div class="form-group">
+            <label for="contact-email" class="form-label">Email Kantor Resmi</label>
+            <input type="email" id="contact-email" class="form-input" required placeholder="corporate@company.com">
+          </div>
+          <div class="form-group">
+            <label for="contact-subject" class="form-label">Produk / Layanan yang Diminati</label>
+            <select id="contact-subject" class="form-select">
+              <option value="enterprise">Hukumonline 360 & Regulatory Compliance System (RCS)</option>
+              <option value="data">Lisensi API Pusat Data Regulasi</option>
+              <option value="dms">Document Management System (DMS)</option>
+              <option value="university">University Solutions (Fakultas Hukum)</option>
+              <option value="events">In-House Training & Masterclass CPD</option>
+              <option value="pkpa">Penyelenggaraan PKPA Khusus</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="contact-notes" class="form-label">Kebutuhan Spesifik / Jumlah Pengguna</label>
+            <textarea id="contact-notes" class="form-textarea" rows="3" placeholder="Sebutkan estimasi jumlah user divisi legal atau modul yang dibutuhkan..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Kirim Permintaan Demo</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 5. DOCUMENT DETAIL & HISTORY MODAL -->
+  <dialog id="doc-detail-modal" closedby="any" aria-labelledby="modal-doc-title">
+    <div class="modal-card modal-xl">
+      <div class="modal-header">
+        <div style="flex: 1; margin-right: 1.5rem;">
+          <h3 id="modal-doc-title" class="modal-title" style="font-size: 1.15rem; line-height: 1.35;">Detail Peraturan</h3>
+        </div>
+        <button type="button" class="btn-icon" data-action="close-modal" aria-label="Tutup">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-meta-wrap">
+          <div id="modal-doc-badges" class="doc-badges"></div>
+          <div style="background-color: var(--bg-muted); padding: 1rem; border-radius: var(--radius-sm);">
+            <h5 style="font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.35rem; color: var(--text-muted);">
+              Ringkasan Konsiderans & Pokok Pengaturan:
+            </h5>
+            <p id="modal-doc-summary" style="font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.6;"></p>
+          </div>
+        </div>
+
+        <div id="modal-doc-articles"></div>
+        <div id="modal-doc-fulltext"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" id="modal-doc-bookmark-btn">
+          Simpan ke Workspace
+        </button>
+        <button type="button" class="btn btn-primary" data-action="close-modal">
+          Tutup Pratinjau
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 6. MY WORKSPACE DRAWER SLIDE-OVER -->
+  <dialog id="workspace-drawer" closedby="any" aria-labelledby="workspace-title">
+    <div class="workspace-drawer-inner">
+      <div class="workspace-drawer-header">
+        <div class="workspace-drawer-title-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <h3 id="workspace-title" class="workspace-drawer-title">My Workspace (Ruang Riset)</h3>
+        </div>
+        <button type="button" class="btn-icon" data-action="close-drawer" aria-label="Tutup Workspace">✕</button>
+      </div>
+
+      <div class="workspace-drawer-body">
+        <!-- Companion Chrome Extension Promo in Workspace -->
+        <div class="workspace-extension-card">
+          <div class="ext-icon">🧩</div>
+          <div class="ext-text">
+            <h5>Chrome Extension Companion Tersedia</h5>
+            <p>Pasang ekstensi browser untuk menandai undang-undang & mengirim kutipan pasal langsung ke workspace ini saat menjelajah web.</p>
+            <span class="badge badge-gold" style="font-size: 0.7rem;">Manifest V3 Siap Pakai</span>
+          </div>
+        </div>
+
+        <h4 style="font-size: 0.875rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-top: 0.5rem;">
+          Dokumen Tersimpan & Catatan Anotasi:
+        </h4>
+
+        <!-- Items Container -->
+        <div id="workspace-items-list" style="display: flex; flex-direction: column; gap: 1rem;">
+          <!-- Diisi secara dinamis oleh workspaceUI.js -->
+        </div>
+      </div>
+
+      <div class="workspace-drawer-footer">
+        <span style="font-size: 0.75rem; color: var(--text-muted);">Data tersimpan aman di browser Anda</span>
+        <button type="button" class="btn btn-sm btn-primary" id="btn-export-workspace">
+          Ekspor Ringkasan Riset (.txt)
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Script Application Entry Point -->
+  <script type="module" src="./src/js/main.js"></script>
+
+  <!-- Quick Hero Search Handler -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const heroInput = document.getElementById('hero-quick-input');
+      const heroBtn = document.getElementById('btn-hero-search');
+      if (heroBtn && heroInput) {
+        heroBtn.addEventListener('click', () => {
+          const val = heroInput.value.trim();
+          if (val) {
+            const globalInput = document.getElementById('global-search-input');
+            if (globalInput) {
+              globalInput.value = val;
+              globalInput.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+            const searchSec = document.getElementById('section-search');
+            if (searchSec) searchSec.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+        heroInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') heroBtn.click();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

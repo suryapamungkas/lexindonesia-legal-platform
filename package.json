@@ -1,0 +1,24 @@
+{
+  "name": "lexindonesia-legal-platform",
+  "version": "1.0.0",
+  "description": "Platform Hukum Terintegrasi & Terpercaya di Indonesia - Ekosistem Katalog Produk Intelijen Hukum & Kepatuhan",
+  "author": "Nur Hidayat Surya Pamungkas",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0"
+  },
+  "keywords": [
+    "legal-platform",
+    "hukum-indonesia",
+    "legal-intelligence",
+    "regulatory-compliance",
+    "chrome-extension-mv3",
+    "vite"
+  ]
+}
