@@ -1,3 +1,5 @@
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/28eca982-d311-4ce5-b6f6-60ff6936ee70" />
+
 # LexIndonesia - Platform Hukum Terintegrasi & Terpercaya di Indonesia
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
