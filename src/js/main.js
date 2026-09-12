@@ -68,6 +68,17 @@ function setupHeaderControls(modals, productGrid) {
         tierBadgeText.textContent = isPro ? 'Status: Pro Subscriber' : 'Status: Free User';
       }
 
+      // Sync mobile tier badge
+      const mobileTierBtn = document.getElementById('btn-mobile-tier-toggle');
+      const mobileTierBadgeText = document.getElementById('mobile-tier-badge-text');
+      if (mobileTierBtn) {
+        mobileTierBtn.classList.toggle('tier-pro', isPro);
+        mobileTierBtn.classList.toggle('tier-free', !isPro);
+      }
+      if (mobileTierBadgeText) {
+        mobileTierBadgeText.textContent = isPro ? 'Status: Pro' : 'Status: Free';
+      }
+
       // Update CTA buttons if necessary
       const subscribeCTA = document.getElementById('btn-top-subscribe');
       if (subscribeCTA) {
@@ -75,38 +86,48 @@ function setupHeaderControls(modals, productGrid) {
       }
     });
 
-    tierToggleBtn.addEventListener('click', () => {
+    const handleTierSwitch = () => {
       const nextRole = rbacState.toggleRole();
       const isPro = nextRole === USER_ROLES.PRO;
       const toastMsg = isPro
         ? '🌟 Anda sekarang beralih ke mode PRO SUBSCRIBER! Seluruh dokumen dan analisis hukum terbuka penuh.'
         : 'ℹ️ Anda sekarang beralih ke mode FREE USER. Fitur eksklusif akan terkunci sebagai demo proteksi.';
       alert(toastMsg);
-    });
+    };
+
+    tierToggleBtn.addEventListener('click', handleTierSwitch);
+
+    const mobileTierBtn = document.getElementById('btn-mobile-tier-toggle');
+    if (mobileTierBtn) {
+      mobileTierBtn.addEventListener('click', handleTierSwitch);
+    }
   }
 
   // B. Language Switcher (ID / EN)
   const langToggleBtn = document.getElementById('btn-lang-toggle');
   const langLabel = document.getElementById('lang-label');
+  const mobileLangBtn = document.getElementById('btn-mobile-lang-toggle');
+  const mobileLangLabel = document.getElementById('mobile-lang-label');
 
-  if (langToggleBtn) {
+  if (langToggleBtn || mobileLangBtn) {
     i18nState.subscribe((currentLang) => {
-      if (langLabel) langLabel.textContent = currentLang.toUpperCase();
+      const upper = currentLang.toUpperCase();
+      if (langLabel) langLabel.textContent = upper;
+      if (mobileLangLabel) mobileLangLabel.textContent = upper;
       updatePageTranslations(currentLang);
     });
 
-    langToggleBtn.addEventListener('click', () => {
-      i18nState.toggleLang();
-    });
+    const handleLangToggle = () => i18nState.toggleLang();
+    if (langToggleBtn) langToggleBtn.addEventListener('click', handleLangToggle);
+    if (mobileLangBtn) mobileLangBtn.addEventListener('click', handleLangToggle);
   }
 
   // C. Theme Toggle (Dark / Light Mode)
   const themeToggleBtn = document.getElementById('btn-theme-toggle');
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      themeState.toggleTheme();
-    });
-  }
+  const mobileThemeBtn = document.getElementById('btn-mobile-theme-toggle');
+  const handleThemeToggle = () => themeState.toggleTheme();
+  if (themeToggleBtn) themeToggleBtn.addEventListener('click', handleThemeToggle);
+  if (mobileThemeBtn) mobileThemeBtn.addEventListener('click', handleThemeToggle);
 
   // D. Global Catalog Quick Matrix Link
   const catalogBtn = document.getElementById('btn-top-catalog');
@@ -166,12 +187,50 @@ function setupMegaMenu(productGrid) {
 function setupMobileNav() {
   const mobileToggle = document.getElementById('mobile-nav-toggle');
   const mainNav = document.getElementById('main-nav-menu');
+  const overlay = document.getElementById('mobile-nav-overlay');
+  const closeBtn = document.getElementById('btn-close-mobile-nav');
+
+  function closeNav() {
+    if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
+    if (mainNav) mainNav.classList.remove('nav-open');
+    if (overlay) overlay.classList.remove('overlay-open');
+    document.body.style.overflow = '';
+  }
+
+  function openNav() {
+    if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'true');
+    if (mainNav) mainNav.classList.add('nav-open');
+    if (overlay) overlay.classList.add('overlay-open');
+    document.body.style.overflow = 'hidden';
+  }
 
   if (mobileToggle && mainNav) {
     mobileToggle.addEventListener('click', () => {
       const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
-      mobileToggle.setAttribute('aria-expanded', !isExpanded);
-      mainNav.classList.toggle('nav-open', !isExpanded);
+      if (isExpanded) {
+        closeNav();
+      } else {
+        openNav();
+      }
+    });
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeNav);
+  }
+
+  if (overlay) {
+    overlay.addEventListener('click', closeNav);
+  }
+
+  // Close mobile drawer when clicking navigation links or action buttons inside it
+  if (mainNav) {
+    mainNav.querySelectorAll('a, [data-action]').forEach(el => {
+      el.addEventListener('click', () => {
+        if (window.innerWidth <= 880) {
+          closeNav();
+        }
+      });
     });
   }
 }

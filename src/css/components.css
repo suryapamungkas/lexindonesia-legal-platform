@@ -185,9 +185,11 @@ dialog {
   border: none;
   background: transparent;
   margin: auto;
-  max-width: 90vw;
+  width: fit-content;
+  max-width: min(94vw, 1040px);
   max-height: 90vh;
   outline: none;
+  box-sizing: border-box;
 
   /* Animasi Transisi Entry & Exit Top Layer */
   opacity: 0;
@@ -237,6 +239,9 @@ dialog[open]::backdrop {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .modal-header {
@@ -270,11 +275,44 @@ dialog[open]::backdrop {
   background-color: var(--bg-surface-elevated);
 }
 
-/* Modal Sizes */
-.modal-sm { width: 440px; }
-.modal-md { width: 620px; }
-.modal-lg { width: 850px; }
-.modal-xl { width: 1040px; }
+/* Modal Sizes (Responsive Widths) */
+.modal-sm { width: min(440px, 94vw); }
+.modal-md { width: min(620px, 94vw); }
+.modal-lg { width: min(850px, 94vw); }
+.modal-xl { width: min(1040px, 94vw); }
+
+@media (max-width: 640px) {
+  dialog {
+    width: 95vw;
+    max-width: 95vw;
+    margin: auto;
+  }
+  .modal-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: var(--radius-md);
+  }
+  .modal-header {
+    padding: 1rem 1.15rem;
+  }
+  .modal-title {
+    font-size: 1.05rem;
+    line-height: 1.35;
+  }
+  .modal-body {
+    padding: 1rem 1.15rem;
+    max-height: calc(85vh - 125px);
+  }
+  .modal-footer {
+    padding: 0.85rem 1.15rem;
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+  }
+  .modal-footer .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
 
 /* Search Highlight */
 .search-highlight {
